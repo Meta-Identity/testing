@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-// Polykick Vault V1
+/* Polykick Vault V1 */
 
 pragma solidity 0.8.19;
 
@@ -11,8 +11,7 @@ contract polykickVault {
 
     uint256 private buyerOperationID;
     uint256 private sellerOperationID;
-    uint256 public constant oneMonth =
-        150; /*days*/
+    uint256 public constant oneMonth = 30 days;
 
     bool vaultPaused = false;
 
@@ -112,7 +111,7 @@ contract polykickVault {
             _amount, // tokenAmount
             _amount, // unclaimed
             0, // claimed
-            (300), /* * 1 days)*/
+            (_lockDays * 1 days),
             false
         );
         emit buyerVaultDeposit(buyerOperationID, _buyer, _token, _amount, _lockDays);
@@ -343,7 +342,6 @@ contract polykickVault {
     function getSellerOperationIDs(address _seller) external view returns (uint256[] memory) {
         return sellerOperationIDs[_seller];
     }
-
 }
 
                 /*********************************************************
